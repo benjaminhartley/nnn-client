@@ -1,0 +1,9 @@
+<div class="container bg-light">
+  <div *ngFor="let msg of errorMessages" class="alert alert-danger">
+    <h4>{{ msg }}</h4>
+  </div>
+
+  <div *ngFor="let msg of messages" class="alert alert-success">
+    <h4>{{ msg }}</h4>
+  </div>
+</div>

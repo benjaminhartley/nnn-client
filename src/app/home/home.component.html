@@ -1,0 +1,46 @@
+<div class="container bg-light">
+  <div *ngFor="let msg of errorMessages" class="alert alert-danger">
+    <h4>{{ msg }}</h4>
+  </div>
+
+  <div class="terminal" *ngIf="!!user">
+    <pre>id: {{ user.id }}</pre>
+    <pre>name: {{ user.name }}</pre>
+    <pre>email: {{ user.email }}</pre>
+    <pre>nano: {{ getUserNano().toFixed() }}</pre>
+    <pre>createdAt: {{ user.createdAt }}</pre>
+  </div>
+</div>
+
+<div class="container bg-light">
+  <div class="row">
+    <div class="col-sm-6 align-self-center text-center">
+      <h4>Deposit Address</h4>
+
+      <h5 *ngIf="user?.depositAddress">{{ user?.depositAddress }}</h5>
+      <button *ngIf="!user?.depositAddress">Get Deposit Address</button>
+
+      <button *ngIf="user?.depositAddress" [cdkCopyToClipboard]="user?.depositAddress || ''">Copy address</button>
+    </div>
+
+    <div class="col-sm-2">
+      <qrcode *ngIf="user?.depositAddress" [qrdata]="user?.depositAddress || ''" [width]="128" [errorCorrectionLevel]="'M'"></qrcode>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-sm-6">
+      <form>
+        <label for="withdrawalAddress">
+          <span>Withdrawal Address</span>
+          <input type="text" name="withdrawalAddress" [(ngModel)]="withdrawalAddress">
+        </label>
+        <label for="withdrawalAmount">
+          <span>Withdrawal Amount</span>
+          <input type="text" name="withdrawalAmount" [(ngModel)]="withdrawalAmount">
+        </label>
+        <button (click)="withdraw()">Request Withdrawal</button>
+      </form>
+    </div>
+  </div>
+</div>

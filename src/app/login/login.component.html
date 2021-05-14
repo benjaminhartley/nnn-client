@@ -1,0 +1,107 @@
+<div *ngIf="!isLoggedIn;else other_content" class="container">
+  <div *ngFor="let msg of errorMessages" class="alert alert-danger">
+    <h4>{{ msg }}</h4>
+  </div>
+
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Login
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+          <form>
+
+            <div class="row">
+              <div class="col-sm-1">
+                <label for="username">
+                  <span>Username</span>
+                  <input type="text" name="username" [(ngModel)]="loginUsername">
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-1">
+                <label for="password">
+                  <span>Password</span>
+                  <input type="password" name="password" [(ngModel)]="loginPassword">
+                </label>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-sm-2">
+                <button (click)="logIn()">Log In</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Signup
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div class="card-body">
+          <form>
+
+            <div class="row">
+              <div class="col-sm-1">
+                <label for="username">
+                  <span>Username (4-20)</span>
+                  <input type="text" name="username" [(ngModel)]="signupUsername">
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-1">
+                <label for="password">
+                  <span>Password (10-128)</span>
+                  <input type="password" name="password" [(ngModel)]="signupPassword">
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-2">
+                <label for="email">
+                  <span>Email (optional)</span>
+                  <input type="text" name="email" [(ngModel)]="signupEmail">
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-2">
+                <button (click)="signUp()">Sign Up</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #other_content>
+  <div>
+    Logged in already
+  </div>
+</ng-template>
